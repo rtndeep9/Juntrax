@@ -40,7 +40,7 @@ const addNode = (req, res) => {
 }
 
 const updateNode = (req, res) => {
-    const { key } = req.params;
+  const { key } = req.params;
   const { value, dag } = req.body;
 
   try {
@@ -54,7 +54,8 @@ const updateNode = (req, res) => {
 }
 
 const deleteNode = (req, res) => {
-    const { key, dag } = req.params;
+  const { key } = req.params;
+  const { dag } = req.body;
 
   try {
     const graph = new Graph(dag);
