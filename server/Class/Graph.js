@@ -5,6 +5,36 @@ class Graph {
       this.adjacencyList[key] = data[key];
     }
   }
+
+  updateNode(key, newValue) {
+    if (!this.adjacencyList[key]) {
+      throw new Error(`Node ${key} does not exist in the graph`);
+    }
+    this.adjacencyList[key] = newValue;
+    return this.adjacencyList
+  }
+
+  addNode(key, value) {
+    if (this.adjacencyList[key]) {
+      throw new Error(`Node ${key} already exists in the graph`);
+    }
+    this.adjacencyList[key] = value;
+    return this.adjacencyList
+  }
+
+  deleteNode(key) {
+    if (!this.adjacencyList[key]) {
+      throw new Error(`Node ${key} does not exist in the graph`);
+    }
+    delete this.adjacencyList[key];
+    for (let k in this.adjacencyList) {
+      let index = this.adjacencyList[k].indexOf(key);
+      if (index !== -1) {
+        this.adjacencyList[k].splice(index, 1);
+      }
+    }
+    return this.adjacencyList
+  }
 }
 
 
