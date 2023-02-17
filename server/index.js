@@ -23,7 +23,10 @@ app.post('/paths', (req, res) => {
     const paths = pathGenerator.getAllPathsFromNode(startNode);
   
     console.log("Paths", paths)
-    res.json(paths);
+    res.json({
+      paths,
+      graph: graph.adjacencyList
+    });
  } catch (err) {
     console.log("Error",err.stack)
     res.status(500).json({
