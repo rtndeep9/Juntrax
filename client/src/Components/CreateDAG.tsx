@@ -20,7 +20,7 @@ const CreateDAG: React.FC<Props> = ({ graphJson, handleGraph, startNode, handleS
         <input id="start-node" type="text" value={startNode} onChange={handleStartNode} />
       </div>
       <div className="form-group">
-        <button onClick={submit}>Get Paths</button>
+        <button id="get-paths"  onClick={submit}>Get Paths</button>
       </div>
     </div>
   );

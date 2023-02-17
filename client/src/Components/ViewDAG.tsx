@@ -1,11 +1,8 @@
 import React from 'react';
 
-interface Graph {
-    [key: string]: string[];
-}
 
 interface Props {
-    graph: Graph;
+    graph: string;
 }
 
 const ViewDAG: React.FC<Props> = ({ graph }) => {

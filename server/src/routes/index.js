@@ -12,6 +12,6 @@ router.post('/graph/nodes', addNode);
 router.put('/graph/nodes/:key', updateNode);
 
 //Delete node and it's children
-router.delete('/graph/nodes/:key', deleteNode);
+router.post('/graph/nodes/delete/:key', deleteNode);
 
 module.exports = router;
