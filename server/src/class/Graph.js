@@ -1,3 +1,5 @@
+const ErrorMessage = require("../lib/error-message")
+
 class Graph {
   constructor(data) {
     this.adjacencyList = {};
@@ -8,7 +10,7 @@ class Graph {
 
   updateNode(key, newValue) {
     if (!this.adjacencyList[key]) {
-      throw new Error(`Node ${key} does not exist in the graph`);
+      throw new ErrorMessage(200, `Node ${key} does not exist in the graph`)
     }
     this.adjacencyList[key] = newValue;
     return this.adjacencyList
@@ -16,7 +18,7 @@ class Graph {
 
   addNode(key, value) {
     if (this.adjacencyList[key]) {
-      throw new Error(`Node ${key} already exists in the graph`);
+      throw new ErrorMessage(200, `Node ${key} already exists in the graph`)
     }
     this.adjacencyList[key] = value;
     return this.adjacencyList
@@ -24,7 +26,7 @@ class Graph {
 
   deleteNode(key) {
     if (!this.adjacencyList[key]) {
-      throw new Error(`Node ${key} does not exist in the graph`);
+      throw new ErrorMessage(200, `Node ${key} does not exist in the graph`)
     }
     delete this.adjacencyList[key];
     for (let k in this.adjacencyList) {
@@ -46,7 +48,7 @@ class PathGenerator {
   getAllPathsFromNode(startNode) {
 
     if(!this.graph.adjacencyList[startNode]) {
-      throw new Error(`Node ${startNode} has no path or it does not exists in the graph`);
+      throw new ErrorMessage(200, `Node ${startNode} has no path or it does not exists in the graph`);
     }
 
     const stack = [[startNode]];

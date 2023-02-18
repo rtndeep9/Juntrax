@@ -1,28 +1,24 @@
 const { Graph, PathGenerator } = require("../class/Graph");
+const ErrorResponse = require('../lib/error-response')
 
 const generatePaths = (req, res) => {
     try {
         const { data, startNode } = req.body;
         console.log("Request", req.body)
 
-        if (!startNode) {
-            startNode = 1
-        }
-
         const graph = new Graph(data);
         const pathGenerator = new PathGenerator(graph);
         const paths = pathGenerator.getAllPathsFromNode(startNode);
 
-        console.log("Paths", paths)
-        res.json({
-            paths,
-            graph: graph.adjacencyList
-        });
-    } catch (err) {
-        console.log("Error", err.stack)
-        res.status(500).json({
-            message: err.message,
-        })
+        const result = {
+          success: true,
+          message: 'Path Generated',
+          paths,
+          graph: graph.adjacencyList
+        }
+        res.json(result);
+    } catch (error) {
+        ErrorResponse(error, res)
     }
 }
 
@@ -32,10 +28,14 @@ const addNode = (req, res) => {
     try {
       const graph = new Graph(dag);
       const updatedGraph = graph.addNode(key, value);
-      res.status(200).json({ message: `Node ${key} added successfully`, graph: updatedGraph });
+      const result = {
+        success: true,
+        message: `Node ${key} added successfully`,
+        graph: updatedGraph
+      }
+      res.json(result);
     } catch (error) {
-      console.log(error);
-      res.status(500).json({ error: error.message });
+      ErrorResponse(error, res)
     }
 }
 
@@ -46,10 +46,14 @@ const updateNode = (req, res) => {
   try {
     const graph = new Graph(dag);
     const updatedGraph = graph.updateNode(key, value);
-    res.status(200).json({ message: `Node ${key} updated successfully`, graph: updatedGraph });
+    const result = {
+      success: true,
+      message: `Node ${key} updated successfully`,
+      graph: updatedGraph
+    }
+    res.json(result);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: error.message });
+    ErrorResponse(error, res)
   }
 }
 
@@ -60,10 +64,14 @@ const deleteNode = (req, res) => {
   try {
     const graph = new Graph(dag);
     const updatedGraph = graph.deleteNode(key);
-    res.status(200).json({ message: `Node ${key} deleted successfully`, graph: updatedGraph });
+    const result = {
+      success: true,
+      message: `Node ${key} deleted successfully`,
+      graph: updatedGraph
+    }
+    res.json(result);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: error.message });
+    ErrorResponse(error, res)
   }
 }
 
