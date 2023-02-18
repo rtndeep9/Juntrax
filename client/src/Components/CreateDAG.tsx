@@ -13,11 +13,11 @@ const CreateDAG: React.FC<Props> = ({ graphJson, handleGraph, startNode, handleS
     <div className="create-dag">
       <div className="form-group">
         <label htmlFor="graph-json">Graph (JSON format):</label>
-        <textarea id="graph-json" value={graphJson} onChange={handleGraph} />
+        <textarea id="graph-json" required value={graphJson} onChange={handleGraph} />
       </div>
       <div className="form-group">
         <label htmlFor="start-node">Start Node:</label>
-        <input id="start-node" type="text" value={startNode} onChange={handleStartNode} />
+        <input id="start-node" type="text" required value={startNode} onChange={handleStartNode} />
       </div>
       <div className="form-group">
         <button id="get-paths"  onClick={submit}>Get Paths</button>
